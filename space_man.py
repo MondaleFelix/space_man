@@ -109,15 +109,16 @@ def spaceman(secret_word):
 
     print("game info")
     while guesses != 0:
-        guessed_letter = input("Enter a fucking letter")
+        guessed_letter = input("Enter a letter: ")
 
         letters_guessed.append(guessed_letter)
         if(is_guess_in_word(guessed_letter, secret_word)):
+            print(guessed_letter + " was found!")
             print(get_guessed_word(secret_word, letters_guessed))
         else:
             print(get_guessed_word(secret_word, letters_guessed))
-            print("You have " + str(guesses) + " remaining")
             guesses -= 1
+            print("You have " + str(guesses) + " remaining")
     
     print(secret_word)
 
