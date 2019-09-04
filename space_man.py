@@ -68,8 +68,13 @@ def get_guessed_word(secret_word, letters_guessed):
 
 
 def is_guess_in_word(guess, secret_word):
+    
+    secret_word = list(secret_word)
 
-    return guess in secret_word
+    if guess in secret_word:
+        return true
+    else
+        return false 
     '''
     A function to check if the guessed letter is in the secret word
 
