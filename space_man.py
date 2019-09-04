@@ -50,7 +50,9 @@ def get_guessed_word(secret_word, letters_guessed):
 
     for char in secret_word:
         if char in letters_guessed:
-            letter_blanks.
+            letter_blanks[secret_word.index(char)] = secret_word[secret_word.index(char)]
+
+    return letter_blanks.join()
     '''
     A function that is used to get a string showing the letters guessed so far in the secret word and underscores for letters that have not been guessed yet.
 
@@ -64,11 +66,11 @@ def get_guessed_word(secret_word, letters_guessed):
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
     
-    pass
+
 
 
 def is_guess_in_word(guess, secret_word):
-    
+
     secret_word = list(secret_word)
 
     if guess in secret_word:
