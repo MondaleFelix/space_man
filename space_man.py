@@ -75,6 +75,7 @@ def get_guessed_word(secret_word, letters_guessed):
 
 
 def is_guess_in_word(guess, secret_word):
+
     return guess in list(secret_word)
     '''
     A function to check if the guessed letter is in the secret word
@@ -135,6 +136,6 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+spaceman(secret_word)
 
 
