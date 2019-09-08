@@ -51,9 +51,11 @@ def get_guessed_word(secret_word, letters_guessed):
     for i in range(len(secret_word)):
         letter_blanks.append("_")
 
-    for char in secret_word:
-        if char in letters_guessed:
-            letter_blanks[secret_word.index(char)] = secret_word[secret_word.index(char)]
+    for i in range(len(secret_word)):
+        if secret_word[i] in letters_guessed:
+            letter_blanks[i] = secret_word[i]       
+
+
 
     return "".join(letter_blanks)
 
@@ -109,18 +111,25 @@ def spaceman(secret_word):
     while guesses != 0:
         guessed_letter = input("Enter a letter: ")
         letters_guessed.append(guessed_letter)
+        letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
+
+        # Handles correct guess 
 
         if(is_guess_in_word(guessed_letter, secret_word)):
             print(guessed_letter + " was found!")
             print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
+            print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
             print("_________________________________________")
 
-
+        # Handles incorrect guess
 
         else:
-            print(get_guessed_word(secret_word, letters_guessed))
-            guesses -= 1
+            print("Sorry your guess was not in the word, try again")
             print("You have " + str(guesses) + " remaining")
+            print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
+            print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
+            print("_________________________________________")
+            guesses -= 1
     
     print("You lost, the word was " + secret_word)
 
@@ -139,7 +148,7 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
-secret_word = load_word()
+secret_word = "egg"
 spaceman(secret_word)
 
 
