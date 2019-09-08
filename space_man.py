@@ -1,7 +1,7 @@
 import random
 
 letters_guessed = [] 
-
+letters_not_guessed = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 def load_word():
     '''
@@ -72,8 +72,6 @@ def get_guessed_word(secret_word, letters_guessed):
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
     
 
-
-
 def is_guess_in_word(guess, secret_word):
 
     return guess in list(secret_word)
@@ -105,15 +103,20 @@ def spaceman(secret_word):
     guesses = 7
     print("Welcome to Spaceman!")
     print("The secret word contains: " + str(len(secret_word)) + " letters.")
+    print("You have 7 incorrect guesses, please enter one letter per round")
+    print("_________________________________________")
 
     while guesses != 0:
         guessed_letter = input("Enter a letter: ")
-
         letters_guessed.append(guessed_letter)
 
         if(is_guess_in_word(guessed_letter, secret_word)):
             print(guessed_letter + " was found!")
-            print(get_guessed_word(secret_word, letters_guessed))
+            print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
+            print("_________________________________________")
+
+
+
         else:
             print(get_guessed_word(secret_word, letters_guessed))
             guesses -= 1
