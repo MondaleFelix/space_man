@@ -103,8 +103,9 @@ def spaceman(secret_word):
 
     '''
     guesses = 7
+    print("Welcome to Spaceman!")
+    print("The secret word contains: " + str(len(secret_word)) + " letters.")
 
-    print("Guess the secret word, you have 7 guesses")
     while guesses != 0:
         guessed_letter = input("Enter a letter: ")
 
