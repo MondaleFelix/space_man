@@ -108,7 +108,7 @@ def spaceman(secret_word):
     print("You have 7 incorrect guesses, please enter one letter per round")
     print("_________________________________________")
 
-    while guesses != 0:
+    while guesses != 0 and not is_word_guessed(secret_word, letters_guessed):
         guessed_letter = input("Enter a letter: ")
         letters_guessed.append(guessed_letter)
         letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
@@ -131,7 +131,11 @@ def spaceman(secret_word):
             print("_________________________________________")
             guesses -= 1
     
-    print("You lost, the word was " + secret_word)
+    if guesses > 0:
+        print("Congratulations, you won")
+    else:
+        print("You lost, the word was " + secret_word)
+        
 
 
     #TODO: show the player information about the game according to the project spec
