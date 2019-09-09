@@ -110,12 +110,18 @@ def spaceman(secret_word):
 
     while guesses != 0 and not is_word_guessed(secret_word, letters_guessed):
         guessed_letter = input("Enter a letter: ")
-        letters_guessed.append(guessed_letter)
-        letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
+
+        # Handles invalid guess
+
 
         # Handles correct guess 
 
-        if(is_guess_in_word(guessed_letter, secret_word)):
+
+        if len(guessed_letter) > 1 or len(guessed_letter) == 0 or guessed_letter in letters_guessed:
+            print("invalid guess")
+        elif (is_guess_in_word(guessed_letter, secret_word)):
+            letters_guessed.append(guessed_letter)
+            letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
             print(guessed_letter + " was found!")
             print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
             print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
@@ -124,6 +130,8 @@ def spaceman(secret_word):
         # Handles incorrect guess
 
         else:
+            letters_guessed.append(guessed_letter)
+            letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
             print("Sorry your guess was not in the word, try again")
             print("You have " + str(guesses) + " remaining")
             print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
@@ -135,7 +143,7 @@ def spaceman(secret_word):
         print("Congratulations, you won")
     else:
         print("You lost, the word was " + secret_word)
-        
+
 
 
     #TODO: show the player information about the game according to the project spec
@@ -152,7 +160,7 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
-secret_word = "egg"
+secret_word = load_word()
 spaceman(secret_word)
 
 
