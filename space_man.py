@@ -91,7 +91,10 @@ def is_guess_in_word(guess, secret_word):
     #TODO: check if the letter guess is in the secret word
 
   
-
+def print_game():
+    print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
+    print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
+    print("_________________________________________")
 
 
 def spaceman(secret_word):
@@ -111,37 +114,35 @@ def spaceman(secret_word):
     while guesses != 0 and not is_word_guessed(secret_word, letters_guessed):
         guessed_letter = input("Enter a letter: ")
 
+
         # Handles invalid guess
 
+        if len(guessed_letter) != 1 or guessed_letter in letters_guessed:
+            print("Invalid guess")
 
         # Handles correct guess 
-
-
-        if len(guessed_letter) > 1 or len(guessed_letter) == 0 or guessed_letter in letters_guessed:
-            print("invalid guess")
         elif (is_guess_in_word(guessed_letter, secret_word)):
             letters_guessed.append(guessed_letter)
             letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
             print(guessed_letter + " was found!")
-            print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
-            print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
-            print("_________________________________________")
+            print_game()
 
         # Handles incorrect guess
 
         else:
             letters_guessed.append(guessed_letter)
             letters_not_guessed.pop(letters_not_guessed.index(guessed_letter))
+            guesses -= 1
             print("Sorry your guess was not in the word, try again")
             print("You have " + str(guesses) + " remaining")
-            print("Guessed word so far: "+ get_guessed_word(secret_word, letters_guessed))
-            print("These letters haven't been guessed yet: " + "".join(letters_not_guessed))
-            print("_________________________________________")
-            guesses -= 1
+            print_game()
     
+
+    # Handle win game logic
     if guesses > 0:
         print("Congratulations, you won")
     else:
+        # Lose game logic
         print("You lost, the word was " + secret_word)
 
 
