@@ -155,13 +155,20 @@ def spaceman(secret_word):
     #TODO: check if the game has been won or lost
 
 
+def test_guessed_word():
+    assert get_guessed_word(("mondale"), ['d','e', 'l', 'm']) == "m__d_le"
 
 
+def test_is_guess_in_word(): #tests to see if user letter guessed is correct
+    assert is_guess_in_word(("m"), ('mondale')) is True
 
 
-
-#These function calls that will start the game
-secret_word = load_word()
-spaceman(secret_word)
+def test_word_guessed(): #tests to see if user guesses word correctly
+    assert is_word_guessed(("mondale"), ['m', 'o', 'n', 'd', "a", "e"]) is False
 
 
+if __name__ == "__main__":
+    secret_word = load_word()
+    spaceman(secret_word)
+    # Run the test function
+    test_guessed_word()
